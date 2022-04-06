@@ -30,4 +30,4 @@ const saladsData = [
 
 const seedSalads = () => Salads.bulkCreate(saladsData);
 
-module.exports = seedSalads;
+module.exports = seedSalads; 
