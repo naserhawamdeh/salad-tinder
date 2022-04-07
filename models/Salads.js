@@ -2,29 +2,29 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Salads extends Model {}
-//   static like(body, models) {
-//     return models.Choices.create({
-//       user_id: body.user_id,
-//       salads_id: body.salads_id
-//     }).then(() => {
-//       return Salads.findOne({
-//         where: {
-//           id: body.salads_id
-//         },
-//         attributes: [
-//           'id',
-//           'name',
-//           'ingredients',
-//           'filename'
-//           [
-//             sequelize.literal('(SELECT COUNT(*) FROM choices WHERE salads.id = choices.salads_id'), 'likes'
-//           ]
-//         ]
-//       });
-//     });
-//   }
-// }
+class Salads extends Model {
+  static like(body, models) {
+    return models.Choices.create({
+      user_id: body.user_id,
+      salads_id: body.salads_id
+    }).then(() => {
+      return Salads.findOne({
+        where: {
+          id: body.salads_id
+        },
+        attributes: [
+          'id',
+          'name',
+          'ingredients',
+          'filename'
+          [
+            sequelize.literal('(SELECT COUNT(*) FROM choices WHERE salads.id = choices.salads_id'), 'likes'
+          ]
+        ]
+      });
+    });
+  }
+}
 
 Salads.init(
   {
