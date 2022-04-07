@@ -1,10 +1,30 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User } = require('../models');
+const { User, Salads } = require('../models');
 // add salads and choices routs
 router.get('/', (req, res) => {
-    console.log(req.session);
+  Salads.findAll({
+    attributes: [
+      'id',
+      'name',
+      'ingredients',
+      'filename',
+    ]
+  })
+  .then(dbSaladData => {
+    const salads = dbSaladData.map(salads => salads.get({ plain: true }))
+    res.render('homepage', {
+      salads,
+      loggedIn: req.session.loggedIn
+
+    })
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
     
+  });
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
@@ -25,6 +45,6 @@ router.get('/login', (req, res) => {
   });
 
  
-});
+
 
 module.exports = router;
