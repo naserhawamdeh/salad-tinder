@@ -21,9 +21,9 @@ router.get('/', (req, res) => {
   });
 });
 
-// GET one salads
+// GET one salad
 router.get('/:id', (req, res) => {
-  Salads.findAll({
+  Salads.findOne({
     where: {
       id: req.params.id
     },
@@ -57,24 +57,24 @@ router.post('/', (req, res) => {
 });
 
 // 'LIKE' a salad
-// router.put('/like', (req, res) => {
-//   Salads.like(req.body, { Choices })
-//     .then(newLikeData => res.json(newLikeData))
-//     .catch(err => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
+router.put('/like', (req, res) => {
+  Salads.like(req.body, { Choices })
+    .then(newLikeData => res.json(newLikeData))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
 
 // 'DISLIKE' a salad
-// router.put('/dislike', (req, res) => {
-//   Salads.dislike(req.body, { Choices })
-//     .then(newDislikeData => res.json(newDislikeData))
-//     .catch(err => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
+router.put('/dislike', (req, res) => {
+  Salads.dislike(req.body, { Choices })
+    .then(newDislikeData => res.json(newDislikeData))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
 
 // DELETE a salad
 router.delete('/:id', (req, res) => {

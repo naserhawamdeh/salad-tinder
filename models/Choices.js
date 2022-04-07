@@ -25,6 +25,14 @@ Choices.init(
         model: 'salads',
         key: 'id'
       }
+    },
+    likes_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'likes',
+        key: 'id'
+      }
     }
   },
   {

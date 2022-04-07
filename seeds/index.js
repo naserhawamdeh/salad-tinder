@@ -1,10 +1,14 @@
 const sequelize = require('../config/connection');
-const seedSalads = require('./saladsData');
+const { Salads } = require('../models');
+const seedSalads = require('./saladsData.json');
 
 const seedDb = async () => {
   await sequelize.sync({ force: true });
 
-  await seedSalads();
+  await Salads.bulkCreate(seedSalads, {
+    individualHooks: true,
+    returning: true,
+  });
 
   process.exit(0);
 };
