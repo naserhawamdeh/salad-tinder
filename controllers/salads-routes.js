@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Salads, Choices } = require('../models');
-const { sequelize } = require('../models/User');
+const { Salads, Choices, User } = require('../models');
+const sequelize = require('../config/connection');
 
 // GET all salads
 router.get('/', (req, res) => {
