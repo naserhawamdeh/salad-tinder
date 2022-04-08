@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { User, Choices, Salads } = require('../models');
+const { User, Choices, Salads } = require('../../models');
 
 
 // GET all users
@@ -10,16 +10,16 @@ router.get('/', (req, res) => {
     // removes password from results
 
     attributes: { exclude: ['password'] },
-    // include: {
-    //   model: Salads,
-    //   attributes: ['id', 'filename'],
-    //   include: {
-    //     model: Salads,
-    //     attributes: ['name'],
-    //     through: Choices,
-    //     as: 'likes'
-    //   }
-    // }
+    include: {
+      model: Salads,
+      attributes: ['id', 'filename'],
+      include: {
+        model: Salads,
+        attributes: ['name'],
+        through: Choices,
+        as: 'likes'
+      }
+    }
 
   })
     .then(dbUserData => res.json(dbUserData))
@@ -95,10 +95,25 @@ router.post('/login', (req, res) => {
       }
 
       req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-      })
-      res.json({ user: dbUserData, message: 'Login successful.' });
+        res.json({ user: dbUserData, message: 'Login successful.' });
+      });
+      
     });  
+  });
+
+  // LOGOUT
+  router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+    else {
+      res.status(404).end();
+    }
   });
 
 
