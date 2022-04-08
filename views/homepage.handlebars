@@ -1,7 +1,7 @@
 <ol class="salad-list">
-  {{#each salads as |salads|}}
+  {{#each salads }}
   <li>
-   {{> salad-info salads }}
+   {{ dataValues.name }}
   </li>
   {{/each}}
 </ol>

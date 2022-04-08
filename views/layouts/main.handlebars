@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salad Swiper</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
     <nav>
     <a href="/">Home</a>
     {{#if loggedIn}}
-    
+     <a href="/dashboard">dashboard</a>
     <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
     <a href="/login">Login</a>

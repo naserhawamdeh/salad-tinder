@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const { Salads, Choices, User } = require('../models');
 const sequelize = require('../config/connection');
+const withAuth = require('../utils/auth')
+
+
 
 // GET all salads
-router.get('/', (req, res) => {
+router.get('/',  (req, res) => {
   Salads.findAll({
     order: [['created_at', 'DESC']],
     attributes: [
@@ -12,9 +15,12 @@ router.get('/', (req, res) => {
       'ingredients',
       'filename',
       // [sequelize.literal('(SELECT COUNT(*) FROM choices WHERE salads.id = choices.salads_id'), 'likes']
-    ]
+    ],
   })
-  .then(dbSaladData => res.json(dbSaladData))
+  .then(dbSaladData =>{
+    console.log(dbSaladData)
+    res.render('homepage', {salads: dbSaladData})
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -22,8 +28,8 @@ router.get('/', (req, res) => {
 });
 
 // GET one salads
-router.get('/:id', (req, res) => {
-  Salads.findAll({
+router.get('/:id',  (req, res) => {
+  Salads.findOne({
     where: {
       id: req.params.id
     },
@@ -34,16 +40,19 @@ router.get('/:id', (req, res) => {
       'filename',
       // [sequelize.literal('(SELECT COUNT(*) FROM choices WHERE salads.id = choices.salads_id'), 'likes']
     ]
+    
   })
+  
   .then(dbSaladData => res.json(dbSaladData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
+  // return res.render('salad', saladsData[req.params - 1]);
 });
 
 // CREATE add a new salad
-router.post('/', (req, res) => {
+router.post('/salad', (req, res) => {
   Salads.create({
     name: req.body.name,
     ingredients: req.body.ingredients,
