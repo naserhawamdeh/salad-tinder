@@ -7,26 +7,34 @@
     padding: 0;
     margin: 0;
     font-family: sans-serif;
-    color: #333;
+    color: gold;
+    background-color: darkgrey;
   }
   
   a {
     text-decoration: none;
     font-weight: bold;
     color: black;
+    margin: 10px;
+    padding: 5px;
+    background-color: gold;
+    border-radius: 10px;
   }
   
   a:hover {
     color: #3486eb;
+    background-color: white;
   }
   
   button {
+    width: 80%;
     border: 0;
-    padding: 1%;
+    padding: 5px 10px;
     font-weight: bold;
     transition: background-color .1s;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: gold;
   }
   
   .post-list {
@@ -54,6 +62,17 @@
     margin-bottom: 2%;
   }
   
+  .login-form, .signup-form {
+    border: 3px solid gold;
+    background-color: white;
+    padding: 20px;
+    color: black;
+    width: 30%;
+    margin: 3.5%;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    border-radius: 15px;
+}
+
   form label {
     display: block;
   }
@@ -68,11 +87,24 @@
   }
   
   header {
+    margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
+    background-image: url("../images/garden-salad.jpg");
+    background-size: cover;
+  }
+
+  .title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
   }
   
   main {
