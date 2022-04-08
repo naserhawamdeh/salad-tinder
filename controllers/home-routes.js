@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Salads } = require('../models');
-// add salads and choices routs
+// add salads and choices routes
 router.get('/', (req, res) => {
   Salads.findAll({
     attributes: [
