@@ -15,7 +15,7 @@ async function loginForm(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard/');
+        document.location.replace('/salads/');
       } else {
         alert(response.statusText);
       }
@@ -26,8 +26,8 @@ async function loginForm(event) {
     event.preventDefault();
   
     const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector().value.trim('#email-signup');
-    const password = document.querySelector().value.trim('#password-signup');
+    const email = document.querySelector('#email-signup').value.trim('#email-signup');
+    const password = document.querySelector('#password-signup').value.trim('#password-signup');
   
     if (username && email && password) {
       const response = await fetch('/api/users', {
@@ -48,6 +48,6 @@ async function loginForm(event) {
     }
   }
   
-  document.querySelector().addEventListener('submit', loginForm);
+  document.querySelector('.login-form').addEventListener('submit', loginForm);
   
-  document.querySelector().addEventListener('submit', signupForm);
+  document.querySelector('.signup-form').addEventListener('submit', signupForm);

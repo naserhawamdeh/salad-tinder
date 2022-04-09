@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
       'name',
       'ingredients',
       'filename',
-      // [sequelize.literal('(SELECT COUNT(*) FROM choices WHERE salads.id = choices.salads_id'), 'likes']
+       [sequelize.literal('(SELECT COUNT(*) FROM choices WHERE salads.id = choices.salads_id'), 'likes']
     ]
     
   })
@@ -48,7 +48,6 @@ router.get('/:id', (req, res) => {
     console.log(err);
     res.status(500).json(err);
   });
-  // return res.render('salad', saladsData[req.params - 1]);
 });
 
 // CREATE add a new salad
@@ -65,25 +64,25 @@ router.post('/salad', (req, res) => {
   });
 });
 
-// 'LIKE' a salad
-router.put('/like', (req, res) => {
-  Salads.like(req.body, { Choices })
-    .then(newLikeData => res.json(newLikeData))
-    .catch(err => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-});
+// // 'LIKE' a salad
+// router.put('/like', (req, res) => {
+//   Salads.like(req.body, { Choices })
+//     .then(newLikeData => res.json(newLikeData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
 
-// 'DISLIKE' a salad
-router.put('/dislike', (req, res) => {
-  Salads.dislike(req.body, { Choices })
-    .then(newDislikeData => res.json(newDislikeData))
-    .catch(err => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-});
+// // 'DISLIKE' a salad
+// router.put('/dislike', (req, res) => {
+//   Salads.dislike(req.body, { Choices })
+//     .then(newDislikeData => res.json(newDislikeData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
 
 // DELETE a salad
 router.delete('/:id', (req, res) => {

@@ -18,11 +18,11 @@ Likes.init(
                 key: 'id'
             }
         },
-        post_id: {
+        salads_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'post',
+                model: 'salads',
                 key: 'id'
             }
         }
